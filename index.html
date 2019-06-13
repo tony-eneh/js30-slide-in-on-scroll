@@ -24,19 +24,34 @@
         
         img {
             max-width: 55%;
+            transition: all .7s linear;
         }
         
         p:nth-of-type(odd) img {
             float: left;
+            /* padding-left: -500px; */
+            position: relative;
+            left: -500px;
         }
         
         p:nth-of-type(even) img {
             float: right;
+            /* padding-right: -500px; */
+            position: relative;
+            right: -500px;
         }
         
         p {
             content: "";
             clear: both;
+        }
+        
+        p:nth-of-type(odd) img.show {
+            left: 0;
+        }
+        
+        p:nth-of-type(even) img.show {
+            right: 0;
         }
     </style>
 </head>
@@ -99,6 +114,39 @@
             nihil, perspiciatis expedita enim tempore, alias ab maiores quis necessitatibus distinctio molestias eum, quidem. Delectus impedit quidem laborum, fugit vel neque quo, ipsam, quasi aspernatur quas odio nihil? Veniam amet reiciendis blanditiis
             quis reprehenderit repudiandae neque, ab ducimus, odit excepturi voluptate saepe ipsam. Voluptatem eum error voluptas porro officiis, amet! Molestias, fugit, ut! Tempore non magnam, amet, facere ducimus accusantium eos veritatis neque.</p>
     </div>
+
+    <script>
+        /*fetch elements*/
+        let images = document.querySelectorAll('img');
+
+        // /*get their X offsets*/
+        // images.forEach((image)=>{
+        //     image.offsetTop;
+        // })
+
+        /*define animation function*/
+        function slideInOut(e) {
+            /*even/odd toggle flag*/
+            // console.dir(e);
+            let odd = true;
+            // console.log(window.pageYOffset);
+            images.forEach((image) => {
+                // console.log(window.offsetTop);
+
+                /*show images at halfway scroll into the page*/
+                if (window.pageYOffset + window.innerHeight / 2 >= image.offsetTop) {
+                    // console.log('window.pageYOffset >= image.offsetTop now true for image', image);
+                    image.classList.add('show');
+                }
+                /* toggle the value of odd for the next iteration*/
+                odd = !odd;
+            })
+        }
+
+        /*hook event listeners*/
+
+        window.addEventListener('scroll', slideInOut);
+    </script>
 </body>
 
 </html>
