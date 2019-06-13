@@ -21,6 +21,23 @@
             background-color: aliceblue;
             font-size: larger;
         }
+        
+        img {
+            max-width: 55%;
+        }
+        
+        p:nth-of-type(odd) img {
+            float: left;
+        }
+        
+        p:nth-of-type(even) img {
+            float: right;
+        }
+        
+        p {
+            content: "";
+            clear: both;
+        }
     </style>
 </head>
 
